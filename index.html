@@ -5,13 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        
-        <title>Momentum</title>
+        <title>Momentum App</title>
     </head>
     <body>
-        <div class="hello">
-            <h1 class="sexy-font">Hello</h1>
-        </div>
+        <form id="login-form">
+            <!-- form 규칙 -->
+            <!-- input의 유효성 검사를 작동시키기 위해선 form 안에 있어야 한다 -->
+            <!-- form 안에 더이상 input이 존재하지 않으면, enter 눌렀을때 자동으로 submit -->
+            <input required maxlength="10" type="text" placeholder="What is your name?" />
+            <!-- input 속 button / type="submit"인 input 클릭 시, 작성한 form이 submit -->
+            <!-- <button>Log In</button> -->
+            <input type="submit" value="Log In" />
+        </form>
         <script src="app.js"></script>
     </body>
 </html>
