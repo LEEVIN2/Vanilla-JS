@@ -47,27 +47,27 @@ const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
 const greeting = document.querySelector("#greeting");
 
-function loginSubmit(event) {
-    event.preventDefault();
-    loginForm.classList.add("hidden");
-    const username = loginInput.value;
-    localStorage.setItem("username", username); // localstorage : 브라우저에 저장할 수 있게해줌 (set, get, remove)
-    paintGreetings(username);
-}
-
 // 자주 쓰이는 코드 2개 function으로 만들기
-function paintGreetings(username) {
-    // 문자를 합치는 2가지 방법
-    // greeting.innerText = "Hello " + username;
-    greeting.innerText = `Hello ${username}`;
+function paintGreetings() {
+    const username = localStorage.getItem("username");
+    greeting.innerText = `Hello ${username}`; // 문자를 합치는 2가지 방법 : "Hello " + username; 또는 `Hello ${username}`
     greeting.classList.remove("hidden");
 }
 
+// Login #first-step
 const savedUsername = localStorage.getItem("username");
 
-if( savedUsername === null) {
+if(savedUsername === null) {
     loginForm.classList.remove("hidden");
     loginForm.addEventListener("submit", loginSubmit);
 } else {
-    paintGreetings(savedUsername);
+    paintGreetings();
+}
+
+// Login #second-step
+function loginSubmit(event) {
+    event.preventDefault();
+    loginForm.classList.add("hidden");
+    localStorage.setItem("username", loginInput.value); // localstorage : 브라우저에 정보를 저장할 수 있게해주는 작은 DB같은 API (set, get, remove)
+    paintGreetings();
 }
