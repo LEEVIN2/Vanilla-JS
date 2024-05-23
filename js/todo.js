@@ -38,7 +38,10 @@
 // forEach : array의 각 item에 대해 function을 실행
 // 형식 : 배열명.forEach((인수) => 함수내용);
 
-// arrayTodos.forEach((todo) => paintTodo(todo));
+// = arrayTodos.forEach((todo) => paintTodo(todo));
+// = arrayTodos.forEach(paintTodo);
+// forEach가 array의 요소를 하나씩 넘겨주는데, 마침 paintTodo 함수가 argument(인수)를 하나씩 받고 있기 때문에 이렇게 써도됨
+// 또는 아래처럼 우리가 아는 방식으로 풀 수도 있음
 // function todo(item) {
 //     console.log(item);
 // }
@@ -54,7 +57,7 @@ const todoList = document.querySelector("#todo-list");
 // 이렇게 하면 애플리케이션이 실행(새로고침)될 때마다 빈 array를 가짐
 // 따라서 새로고침 후 입력값을 넣으면 기존 localStorage에 추가되는게 아니라 새로 덮어씌워지게 됨
 // 변경 :
-const todos = JSON.parse(localStorage.getItem("todos"));
+let todos = JSON.parse(localStorage.getItem("todos"));
 
 // 4.삭제버튼
 function deleteTodoBtn(event) {
@@ -86,6 +89,15 @@ function submitTodoForm(event) {
 
     // 3.새로고침 시 기존 내용 유지되게 하기
     // 3-1.input값을 array와 localStorage에 저장 → 1) 새로운 todo를 저장하기 위함
+
+    // 오류코드 : todos.push(newTodo);
+    // 오류원인 :
+    // null 참조 오류 → 배열이 초기화되지 않았거나 명시적으로 null로 설정된 경우 발생
+    // 첫 사용이라 todos array에 localStorage 값이 없다면 null이 되는데, 배열이 null이면 push할 수 없음 (push 메서드는 기존 배열에 새로운 요소를 추가하는데 사용하기 때문)
+    // 오류해결 : null일때 배열 초기화 코드 추가, 위에 정의한 todos 타입 const → let 변경
+    if (todos === null) {
+        todos = [];
+    }
     todos.push(newTodo);
     localStorage.setItem("todos", JSON.stringify(todos));
 
@@ -95,4 +107,9 @@ todoForm.addEventListener("submit", submitTodoForm);
 
 // 3-2.localStorage에 저장된 값(기존 내용)을 새로운 array에 넣고 뿌려주기 → 2) 새로고침 후에도 기존의 todo를 보여주기 위함
 const arrayTodos = JSON.parse(localStorage.getItem("todos"));
-arrayTodos.forEach((todo) => paintTodo(todo));
+// 오류코드 : arrayTodos.forEach(paintTodo);
+// 오류원인 : 처음에 null 값이면 오류가 나서 조건문으로 해결
+// 오류해결 :
+if (arrayTodos !== null) {
+    arrayTodos.forEach(paintTodo);
+}
