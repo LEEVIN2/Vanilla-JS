@@ -38,10 +38,7 @@
 // forEach : array의 각 item에 대해 function을 실행
 // 형식 : 배열명.forEach((인수) => 함수내용);
 
-// = arrayTodos.forEach((todo) => paintTodo(todo));
-// = arrayTodos.forEach(paintTodo);
-// forEach가 array의 요소를 하나씩 넘겨주는데, 마침 paintTodo 함수가 argument(인수)를 하나씩 받고 있기 때문에 이렇게 써도됨
-// 또는 아래처럼 우리가 아는 방식으로 풀 수도 있음
+// arrayTodos.forEach((todo) => paintTodo(todo));
 // function todo(item) {
 //     console.log(item);
 // }
@@ -98,4 +95,4 @@ todoForm.addEventListener("submit", submitTodoForm);
 
 // 3-2.localStorage에 저장된 값(기존 내용)을 새로운 array에 넣고 뿌려주기 → 2) 새로고침 후에도 기존의 todo를 보여주기 위함
 const arrayTodos = JSON.parse(localStorage.getItem("todos"));
-arrayTodos.forEach(paintTodo);
+arrayTodos.forEach((todo) => paintTodo(todo));
