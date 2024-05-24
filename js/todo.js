@@ -46,6 +46,12 @@
 //     console.log(item);
 // }
 
+// 4) 배열명.filter
+// 배열의 각 요소를 하나씩 호출해 필터를 거쳐 true일 경우만 노출 (false면 제거)
+// 결과는 false인 요소는 제거 후 새로운 배열로 생성됨
+// = function 함수명(배열) {return 배열.id !== li.id};
+// = arr.filter(item => item > 2 )
+
 //------------------------------------------------------
 
 const todoForm = document.querySelector("#todo-form");
@@ -63,15 +69,19 @@ let todos = JSON.parse(localStorage.getItem("todos"));
 function deleteTodoBtn(event) {
     const li = event.target.parentElement;
     li.remove();
+    todos = todos.filter(todos => todos.id !== parseInt(li.id));
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 // 2.입력받은 input값을 li로 나열
 function paintTodo(newTodo) {
     const todoLi = document.createElement("li");
+    // 4.삭제버튼 (구별하기위해 개별 id값 추가)
+    todoLi.id = newTodo.id;
     const todoSpan = document.createElement("span");
     const todoButton = document.createElement("button");
 
-    todoSpan.innerText = newTodo;
+    todoSpan.innerText = newTodo.text;
     todoButton.innerText = "❌";
     todoButton.addEventListener("click", deleteTodoBtn);
 
@@ -87,6 +97,12 @@ function submitTodoForm(event) {
     const newTodo = todoInput.value;
     todoInput.value = "";
 
+    // 4.삭제버튼 (구별하기위해 개별 id값 생성)
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now()
+    };
+
     // 3.새로고침 시 기존 내용 유지되게 하기
     // 3-1.input값을 array와 localStorage에 저장 → 1) 새로운 todo를 저장하기 위함
 
@@ -98,10 +114,10 @@ function submitTodoForm(event) {
     if (todos === null) {
         todos = [];
     }
-    todos.push(newTodo);
+    todos.push(newTodoObj);
     localStorage.setItem("todos", JSON.stringify(todos));
 
-    paintTodo(newTodo);
+    paintTodo(newTodoObj);
 }
 todoForm.addEventListener("submit", submitTodoForm);
 
