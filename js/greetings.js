@@ -50,7 +50,7 @@ const greeting = document.querySelector("#greeting");
 // 자주 쓰이는 코드 2개 function으로 만들기
 function paintGreetings() {
     const username = localStorage.getItem("username");
-    greeting.innerText = `Hello ${username}`; // 문자를 합치는 2가지 방법 : "Hello " + username; 또는 `Hello ${username}`
+    greeting.innerText = `Hello! ${username}`; // 문자를 합치는 2가지 방법 : "Hello " + username; 또는 `Hello ${username}`
     greeting.classList.remove("hidden");
 }
 

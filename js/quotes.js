@@ -5,24 +5,24 @@
 
 const quotes = [
     {
-        quote: "삶이 있는 한 희망은 있다",
-        author: "키케로",
+        quote: "While there's life, there's hope",
+        author: "Cicero",
     },
     {
-        quote: "하루에 3시간을 걸으면 7년 후에 지구를 한바퀴 돌 수 있다",
-        author: "사무엘존슨",
+        quote: "Walking three hours a day, in seven years you would have walked around the world",
+        author: "Samuel Johnson",
     },
     {
-        quote: "언제나 현재에 집중할 수 있다면 행복할 것이다",
-        author: "파울로 코엘료",
+        quote: "If you concentrate always on the present, you'll be a happy man",
+        author: "Paulo Coelho",
     },
     {
-        quote: "신은 용기있는 자를 결코 버리지 않는다",
-        author: "켄러",
+        quote: "God never forsakes the courageous",
+        author: "Ralph Waldo Emerson",
     },
     {
-        quote: "한번의 실패와 영원한 실패를 혼동하지 마라",
-        author: "F.스콧 핏제랄드",
+        quote: "Don't confuse a single defeat with a final defeat",
+        author: "F. Scott Fitzgerald",
     }
 ]
 

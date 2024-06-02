@@ -82,8 +82,9 @@ function geoOk(position) {
         // data.weather[0].main : 배열 weather의 첫번째 요소의 main 값을 가져옴
         const city = document.querySelector("#weather span:first-child");
         const weather = document.querySelector("#weather span:last-child");
+        const temp = Math.round(data.main.temp);
         city.innerText = data.name;
-        weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+        weather.innerText = `${data.weather[0].main} ${temp}°C`;
     });
 }
 

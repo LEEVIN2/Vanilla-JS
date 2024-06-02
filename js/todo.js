@@ -82,7 +82,7 @@ function paintTodo(newTodo) {
     const todoButton = document.createElement("button");
 
     todoSpan.innerText = newTodo.text;
-    todoButton.innerText = "❌";
+    todoButton.innerText = "✘";
     todoButton.addEventListener("click", deleteTodoBtn);
 
     // append는 맨 마지막에 위치해야함
